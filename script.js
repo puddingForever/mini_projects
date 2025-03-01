@@ -7,7 +7,7 @@ const img = document.querySelector("img");
 const imageLists = [
   "./assets/aladdin.gif",
   "./assets/shrek.gif",
-  "./assets/pocahontas.gif",
+  "./assets/Pocahontas.gif",
 ];
 populateUI();
 
