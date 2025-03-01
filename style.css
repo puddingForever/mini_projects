@@ -5,6 +5,7 @@
 }
 
 body {
+  min-width: 294px;
   background-color: #242333;
   color: #fff;
   display: flex;
@@ -19,7 +20,19 @@ body {
 .movie-container {
   margin: 20px 0;
 }
-
+/* 모바일 크기 조정*/
+@media (max-width: 350px) {
+  .movie-container {
+    font-size: 14px;
+  }
+  #movie {
+    font-size: 10px;
+    margin-left: 3px;
+  }
+  .text {
+    font-size: 14px;
+  }
+}
 .movie-container select {
   background-color: #fff;
   border: 0;
