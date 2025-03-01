@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disney Booking System</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="movie-container">
+        <label> 영화를 선택해주세요 :</label>
+        <select id="movie">
+            <option value="18000">알라딘(18,000원) </option>
+            <option value="12000">슈렉 (12,000원) </option>
+            <option value="11000">포카혼타스(11,000원) </option>
+        </select>
+    </div>
+
+    <ul class="showcase">
+        <li><div class="seat"></div><small>N/A</small></li>
+        <li><div class="seat selected"></div><small>Selected</small></li>
+        <li><div class="seat occupied"></div><small>Occupied</small></li>
+    </ul>
+
+     <div class="container">
+            <div class="screen">
+                <img src= "./assets/aladdin.gif" />
+            </div>
+
+            <div class="row">
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat occupied"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat occupied"></div>
+            </div>
+            <div class="row">
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat occupied"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+            </div>
+            <div class="row">
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat occupied"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+            </div>
+            <div class="row">
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat occupied"></div>
+                <div class="seat occupied"></div>
+                <div class="seat occupied"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+            </div>
+            <div class="row">
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat occupied"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+            </div>
+            <div class="row">
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat occupied"></div>
+                <div class="seat occupieds"></div>
+            </div>
+        </div>
+        <p class="text"><span id="count">0</span>개의 좌석을 선택하셨고, 총 <span id="total">0</span>원 입니다.</p>
+   
+    <script src="./script.js" > </script>
+</body>
+</html>
