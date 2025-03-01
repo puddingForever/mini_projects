@@ -8,18 +8,18 @@
 </head>
 <body>
     <div class="movie-container">
-        <label> 영화를 선택해주세요 :</label>
+        <label> Bitte wählen Sie einen Film aus:</label>
         <select id="movie">
-            <option value="18000">알라딘(18,000원) </option>
-            <option value="12000">슈렉 (12,000원) </option>
-            <option value="11000">포카혼타스(11,000원) </option>
+            <option value="8">Aladdin (8 Euro)</option>
+            <option value="15">Shrek (15 Euro) </option>
+            <option value="5">Pocahontas (5 Euro) </option>
         </select>
     </div>
  
     <ul class="showcase">
-        <li><div class="seat"></div><small>N/A</small></li>
-        <li><div class="seat selected"></div><small>Selected</small></li>
-        <li><div class="seat occupied"></div><small>Occupied</small></li>
+        <li><div class="seat"></div><small>Verfügbar</small></li>
+        <li><div class="seat selected"></div><small>Ausgewählt</small></li>
+        <li><div class="seat occupied"></div><small>Besetzt</small></li>
     </ul>
 
      <div class="container">
@@ -76,10 +76,10 @@
                 <div class="seat"></div>
                 <div class="seat"></div>
                 <div class="seat occupied"></div>
-                <div class="seat occupieds"></div>
+                <div class="seat occupied"></div>
             </div>
         </div>
-        <p class="text"><span id="count">0</span>개의 좌석을 선택하셨고, 총 <span id="total">0</span>원 입니다.</p>
+        <p class="text">Sie haben <span id="count">0</span> Plätze gewählt und es kostet insgesamt <span id="total">0</span>Euro</p>
    
     <script src="./script.js" > </script>
 </body>

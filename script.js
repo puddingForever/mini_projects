@@ -19,6 +19,9 @@ function setMovieData(movieIndex, moviePrice) {
   localStorage.setItem("selectedMoviePrice", moviePrice);
 }
 
+function setScreenData(movie) {
+  localStorage.setItem("selectedScreen", movie);
+}
 // update total and count
 function updateSelectedCount() {
   const selectedSeats = document.querySelectorAll(".row .seat.selected");
@@ -42,6 +45,10 @@ function populateUI() {
         seat.classList.add("selected");
       }
     });
+
+    const selectedMovie = localStorage.getItem("selectedScreen");
+    img.src = selectedMovie;
+    console.log(selectedMovie);
   }
 
   const selectedMovieIndex = localStorage.getItem("selectedMovieIndex");
@@ -56,6 +63,7 @@ movieSelect.addEventListener("change", (e) => {
   setMovieData(e.target.selectedIndex, e.target.value);
   updateSelectedCount();
   img.src = imageLists[e.target.selectedIndex];
+  setScreenData(imageLists[e.target.selectedIndex]);
 });
 
 // 좌석 예약 이벤트
@@ -70,5 +78,5 @@ container.addEventListener("click", (e) => {
   }
 });
 
-// count ,total 초기화
+// count ,total
 updateSelectedCount();
