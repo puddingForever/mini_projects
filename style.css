@@ -5,7 +5,7 @@
 }
 
 body {
-  min-width: 294px;
+  min-width: 290px;
   background-color: #242333;
   color: #fff;
   display: flex;
@@ -21,7 +21,7 @@ body {
   margin: 20px 0;
 }
 /* 모바일 크기 조정*/
-@media (max-width: 350px) {
+@media (max-width: 400px) {
   .movie-container {
     font-size: 14px;
   }
@@ -30,7 +30,17 @@ body {
     margin-left: 3px;
   }
   .text {
-    font-size: 14px;
+    font-size: 12px;
+  }
+  .screen img {
+    width: 80%;
+  }
+  .seat {
+    height: 20px;
+  }
+  .container {
+    width: 180px;
+    align-items: center;
   }
 }
 .movie-container select {
@@ -71,10 +81,6 @@ body {
   margin-right: 18px;
 }
 
-.seat:nth-last-of-type(2) {
-  margin-left: 18px;
-}
-
 .seat:not(.occupied):hover {
   cursor: pointer;
   transform: scale(1.2);
@@ -108,11 +114,13 @@ body {
 
 .row {
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .screen {
   background-color: #fff;
-  height: 100px;
+  height: 200px;
   width: 100%;
   margin: 15px 0;
   transform: rotateX(-45deg);
