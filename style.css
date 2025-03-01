@@ -35,9 +35,7 @@ body {
   .screen img {
     width: 80%;
   }
-  .seat {
-    height: 20px;
-  }
+
   .container {
     width: 180px;
     align-items: center;
@@ -62,8 +60,8 @@ body {
 
 .seat {
   background-color: #444451;
-  height: 12px;
-  width: 15px;
+  height: 20px;
+  width: 24px;
   margin: 3px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
