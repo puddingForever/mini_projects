@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/ScrollTrigger.min.js"></script>
+    <title>Infinite Scroll</title>
+</head>
+<body>
+        <div class="header"> 
+            <h1>Let's Talk</h1>
+            <div class="filter-container">
+             <input type="text" id="filter" class="filter" placeholder="필요한 정보만 쏙쏙!" />
+              <select class="search-type">
+                <option value="newest">최신순</option>
+                <option value="oldest">베스트순</option>
+            </select>
+            </div>
+        </div>
+       <div id="post-container">
+       </div>
+    <div  class="loader">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+    <script src="./script.js" defer></script>
+</body>
+</html>
