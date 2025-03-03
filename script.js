@@ -1,82 +1,126 @@
-const container = document.querySelector(".container");
-const seats = document.querySelectorAll(".row .seat:not(.occupied)");
-const count = document.getElementById("count");
-const total = document.getElementById("total");
-const movieSelect = document.getElementById("movie");
-const img = document.querySelector("img");
-const imageLists = [
-  "./assets/aladdin.gif",
-  "./assets/shrek.gif",
-  "./assets/Pocahontas.gif",
-];
-populateUI();
+const postContainer = document.getElementById("post-container");
+const loading = document.querySelector(".loader");
+const filter = document.getElementById("filter");
+const header = document.querySelector(".header");
+const searchType = document.querySelector(".search-type");
+gsap.registerPlugin(ScrollTrigger);
 
-let ticketPrice = +movieSelect.value;
-
-// localStorage 저장
-function setMovieData(movieIndex, moviePrice) {
-  localStorage.setItem("selectedMovieIndex", movieIndex);
-  localStorage.setItem("selectedMoviePrice", moviePrice);
+let limit = 5;
+let page = 1;
+// fetch posts from api
+async function getPosts() {
+  const res = await fetch(
+    `https://jsonplaceholder.typicode.com/posts?_limit=${limit}&_page=${page}`
+  );
+  const data = await res.json();
+  return data;
 }
 
-function setScreenData(movie) {
-  localStorage.setItem("selectedScreen", movie);
+// show posts in dom
+async function showPosts() {
+  const posts = await getPosts();
+  posts.forEach((post) => {
+    const postEl = document.createElement("div");
+    postEl.classList.add("post");
+    postEl.innerHTML = `
+      <div class="number">${post.id}</div>
+      <div class="post-info">
+          <h2 class="post-title">${post.title}</h2>
+          <div class="post-body">${post.body}</div>
+      </div>
+    `;
+
+    postContainer.appendChild(postEl);
+  });
+
+  gsap.utils.toArray(".post").forEach((selector) => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: selector,
+          start: "0% 20%",
+          end: "0% 0%",
+          scrub: 1,
+          // markers: true,
+        },
+      })
+      .to(
+        selector,
+        {
+          transform: "rotateX(-60deg) scale(0.9)",
+          transformOrigin: "top",
+          filter: "brightness(0.3)",
+        },
+        0
+      );
+  });
 }
-// update total and count
-function updateSelectedCount() {
-  const selectedSeats = document.querySelectorAll(".row .seat.selected");
 
-  const seatsIndex = [...selectedSeats].map((seat) => [...seats].indexOf(seat));
+// initial posts
+showPosts();
 
-  localStorage.setItem("selectedSeats", JSON.stringify(seatsIndex));
+let isLoading = false;
+// show loader
+function showLoading() {
+  if (isLoading) return;
+  isLoading = true;
+  loading.classList.add("show");
 
-  const selectedSeaetsCount = selectedSeats.length;
-  count.innerText = selectedSeaetsCount;
-  total.innerText = selectedSeaetsCount * ticketPrice;
+  setTimeout(() => {
+    loading.classList.remove("show");
+
+    setTimeout(() => {
+      page++;
+      showPosts();
+      isLoading = false;
+    }, 300);
+  }, 1000);
 }
 
-// get data from localStorage
-function populateUI() {
-  const selectedSeats = JSON.parse(localStorage.getItem("selectedSeats"));
+// filter post
+function filterPosts(e) {
+  const term = e.target.value.toUpperCase();
+  const posts = document.querySelectorAll(".post");
 
-  if (selectedSeats !== null && selectedSeats.length > 0) {
-    seats.forEach((seat, index) => {
-      if (selectedSeats.indexOf(index) > -1) {
-        seat.classList.add("selected");
-      }
-    });
+  posts.forEach((post) => {
+    const title = post.querySelector(".post-title").innerText.toUpperCase();
+    const body = post.querySelector(".post-body").innerText.toUpperCase();
 
-    const selectedMovie = localStorage.getItem("selectedScreen");
-    img.src = selectedMovie;
-    console.log(selectedMovie);
+    if (title.indexOf(term) > -1 || body.indexOf(term) > -1) {
+      post.style.display = "flex";
+    } else {
+      post.style.display = "none";
+    }
+  });
+}
+
+function orderList(e) {
+  const order = e.target.value;
+  const posts = Array.from(postContainer.querySelectorAll(".post"));
+
+  if (order === "newest") {
+    alert("정렬 react변환떄 추가예정 ^^ ");
+  } else if (order === "oldest") {
+    alert("정렬 react변환떄 추가예정 ^^ ");
+  }
+}
+window.addEventListener("scroll", () => {
+  // clientHeight : 스크롤을 포함한 전체길이
+  // scrollHEight 사용자가 볼 수 있는 화면높이
+  // scrollTop : 현재 스크롤위치 (얼마나 내렸는지 )
+  const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+
+  if (scrollTop === 0) {
+    header.className = "header";
+  } else {
+    header.className = "header scroll";
   }
 
-  const selectedMovieIndex = localStorage.getItem("selectedMovieIndex");
-
-  if (selectedMovieIndex !== null) {
-    movieSelect.selectedIndex = selectedMovieIndex;
+  if (scrollTop + clientHeight >= scrollHeight - 5) {
+    showLoading();
   }
-}
-
-movieSelect.addEventListener("change", (e) => {
-  ticketPrice = +e.target.value;
-  setMovieData(e.target.selectedIndex, e.target.value);
-  updateSelectedCount();
-  img.src = imageLists[e.target.selectedIndex];
-  setScreenData(imageLists[e.target.selectedIndex]);
 });
 
-// 좌석 예약 이벤트
-container.addEventListener("click", (e) => {
-  if (
-    e.target.classList.contains("seat") &&
-    !e.target.classList.contains("occupied")
-  ) {
-    e.target.classList.toggle("selected");
+filter.addEventListener("input", filterPosts);
 
-    updateSelectedCount();
-  }
-});
-
-// count ,total
-updateSelectedCount();
+searchType.addEventListener("change", orderList);
