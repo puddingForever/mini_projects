@@ -105,9 +105,9 @@ function orderList(e) {
   }
 }
 window.addEventListener("scroll", () => {
-  // clientHeight : 스크롤을 포함한 전체길이
-  // scrollHEight 사용자가 볼 수 있는 화면높이
-  // scrollTop : 현재 스크롤위치 (얼마나 내렸는지 )
+  // clientHeight : 현재 화면에 보이는 높이 (스크롤바 제외한 창 높이 )
+  // scrollHEight 전체문서의 높이 (스크로롶함)
+  // scrollTop : 현재 스크롤위치 (위에서 얼마나 내렸는지 )
   const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
 
   if (scrollTop === 0) {
